@@ -1,0 +1,17 @@
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\MimicAPI.deps.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\MimicAPI.runtimeconfig.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\MimicAPI.runtimeconfig.dev.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\MimicAPI.dll
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\MimicAPI.pdb
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.csprojAssemblyReference.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.AssemblyInfoInputs.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.AssemblyInfo.cs
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.csproj.CoreCompileInputs.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.RazorAssemblyInfo.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.RazorAssemblyInfo.cs
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.RazorTargetAssemblyInfo.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.dll
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.pdb
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.genruntimeconfig.cache

@@ -18,7 +18,7 @@ namespace MimicAPI.Controllers
 			_banco = banco;
 		}
 
-		//APP -- /api/palavras
+		//APP -- /api/palavras	
 		[Route("")]
 		[HttpGet]
 		public ActionResult ObterTodas()
@@ -38,28 +38,31 @@ namespace MimicAPI.Controllers
 		// -- /api/palavras(POST: id, nome, ativo, pontuacao, criacao)
 		[Route("")]
 		[HttpPost]
-		public ActionResult Cadastrar(Palavra palavra)
+		public ActionResult Cadastrar([FromBody] Palavra palavra)
 		{
 			_banco.Palavras.Add(palavra);
+			_banco.SaveChanges();
 			return Ok();
 		}
 
 		// -- /api/palavras/1 (PUT: id, nome, ativo, pontuacao, criacao)
 		[Route("{id}")]
 		[HttpPut]
-		public ActionResult Atualizar(int id, Palavra palavra)
+		public ActionResult Atualizar(int id, [FromBody] Palavra palavra)
 		{
 			palavra.Id = id;
 			_banco.Palavras.Update(palavra);
+			_banco.SaveChanges();
 			return Ok();
 		}
 
 		// -- /api/palavras/1 (DELETE)
-		[Route("{id")]
+		[Route("{id}")]
 		[HttpDelete]
 		public ActionResult Deletar(int id)
 		{
 			_banco.Palavras.Remove(_banco.Palavras.Find(id));
+			_banco.SaveChanges();
 			return Ok();
 		}
 

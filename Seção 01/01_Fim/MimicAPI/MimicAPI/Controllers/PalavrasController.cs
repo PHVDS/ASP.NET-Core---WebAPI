@@ -26,13 +26,12 @@ namespace MimicAPI.Controllers
 		}
 
 		//APP -- /api/palavras	
-		[Route("")]
-		[HttpGet]
+		[HttpGet("", Name = "ObterTodas")]
 		public ActionResult ObterTodas([FromQuery] PalavraUrlQuery query)
 		{
 			var item = _repository.ObterPalavras(query);
 
-			if (item.Count == 0)
+			if (item.Results.Count == 0)
 			{
 				return NotFound();
 			}
@@ -42,11 +41,13 @@ namespace MimicAPI.Controllers
 
 			var lista = _mapper.Map<PaginationList<Palavra>, PaginationList<PalavraDTO>>(item);
 
-			foreach (var palavra in lista)
+			foreach (var palavra in lista.Results)
 			{
 				palavra.Links = new List<LinkDTO>();
 				palavra.Links.Add(new LinkDTO("self", Url.Link("ObterPalavra", new { id = palavra.Id }), "GET"));
 			}
+
+			lista.Links.Add(new LinkDTO("self", Url.Link("ObterTodas", query), "GET"));
 
 			return Ok(lista);
 		}

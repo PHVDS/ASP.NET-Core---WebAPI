@@ -36,9 +36,13 @@ namespace MimicAPI.Controllers
 				return NotFound();
 			}
 
-			if(item.Paginacao != null)
-			Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(item.Paginacao));
+			PaginationList<PalavraDTO> lista = CriarLinksListPalavraDTO(query, item);
 
+			return Ok(lista);
+		}
+
+		private PaginationList<PalavraDTO> CriarLinksListPalavraDTO(PalavraUrlQuery query, PaginationList<Palavra> item)
+		{
 			var lista = _mapper.Map<PaginationList<Palavra>, PaginationList<PalavraDTO>>(item);
 
 			foreach (var palavra in lista.Results)
@@ -49,7 +53,24 @@ namespace MimicAPI.Controllers
 
 			lista.Links.Add(new LinkDTO("self", Url.Link("ObterTodas", query), "GET"));
 
-			return Ok(lista);
+			if (item.Paginacao != null)
+			{
+				Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(item.Paginacao));
+
+				if (query.PagNumero + 1 <= item.Paginacao.TotalPaginas)
+				{
+					var queryString = new PalavraUrlQuery() { PagNumero = query.PagNumero + 1, PagRegistro = query.PagRegistro, Data = query.Data };
+					lista.Links.Add(new LinkDTO("next", Url.Link("ObterTodas", queryString), "GET"));
+				}
+
+				if (query.PagNumero - 1 > 0)
+				{
+					var queryString = new PalavraUrlQuery() { PagNumero = query.PagNumero - 1, PagRegistro = query.PagRegistro, Data = query.Data };
+					lista.Links.Add(new LinkDTO("previous", Url.Link("ObterTodas", queryString), "GET"));
+				}
+			}
+
+			return lista;
 		}
 
 		//WEB -- /api/palavras/1

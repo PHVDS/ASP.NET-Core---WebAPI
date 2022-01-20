@@ -8,8 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MimicAPI.Repositories;
-using MimicAPI.Repositories.Contracts;
+using MimicAPI.Versao1.Repositories;
+using MimicAPI.Versao1.Repositories.Contracts;
 using AutoMapper;
 using MimicAPI.Helpers;
 
@@ -36,6 +36,10 @@ namespace MimicAPI
 			});
 			services.AddMvc();
 			services.AddScoped<IPalavraRepository, PalavraRepository>();
+			services.AddApiVersioning(cfg => { 
+				cfg.ReportApiVersions = true;
+				cfg.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+			});
 
 		}
 

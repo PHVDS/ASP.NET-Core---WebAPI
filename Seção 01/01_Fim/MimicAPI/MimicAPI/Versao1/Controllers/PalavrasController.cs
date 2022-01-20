@@ -15,7 +15,7 @@ namespace MimicAPI.Versao1.Controllers
 {
 	[ApiController]
 	[Route("api/v{version:apiVersion}/[controller]")]	
-	[ApiVersion("1.0")]
+	[ApiVersion("1.0", Deprecated = true)]
 	public class PalavrasController : ControllerBase
 	{
 		private readonly IPalavraRepository _repository;

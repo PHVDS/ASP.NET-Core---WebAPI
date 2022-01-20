@@ -12,6 +12,7 @@ using MimicAPI.Versao1.Repositories;
 using MimicAPI.Versao1.Repositories.Contracts;
 using AutoMapper;
 using MimicAPI.Helpers;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace MimicAPI
 {
@@ -38,6 +39,8 @@ namespace MimicAPI
 			services.AddScoped<IPalavraRepository, PalavraRepository>();
 			services.AddApiVersioning(cfg => { 
 				cfg.ReportApiVersions = true;
+				//cfg.ApiVersionReader = new HeaderApiVersionReader("api-version");
+				cfg.AssumeDefaultVersionWhenUnspecified = true;
 				cfg.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
 			});
 

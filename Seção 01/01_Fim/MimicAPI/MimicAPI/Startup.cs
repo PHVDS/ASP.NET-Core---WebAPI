@@ -13,6 +13,7 @@ using MimicAPI.Versao1.Repositories.Contracts;
 using AutoMapper;
 using MimicAPI.Helpers;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using MimicAPI.Helpers.Swagger;
 
 namespace MimicAPI
 {
@@ -46,11 +47,39 @@ namespace MimicAPI
 
 			services.AddSwaggerGen(cfg => {
 				cfg.ResolveConflictingActions(apiDescription => apiDescription.First());
-				cfg.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
+				cfg.SwaggerDoc("v2.0", new Swashbuckle.AspNetCore.Swagger.Info()
 				{
-					Title = "MimicAPI = V1",
-					Version = "v1"
+					Title = "MimicAPI = V2.0",
+					Version = "v2.0"
 				});
+				cfg.SwaggerDoc("v1.1", new Swashbuckle.AspNetCore.Swagger.Info()
+				{
+					Title = "MimicAPI = V1.1",
+					Version = "v1.1"
+				});
+				cfg.SwaggerDoc("v1.0", new Swashbuckle.AspNetCore.Swagger.Info()
+				{
+					Title = "MimicAPI = V1.0",
+					Version = "v1.0"
+				});
+
+				cfg.DocInclusionPredicate((docName, apiDesc) =>
+				{
+					var actionApiVersionModel = apiDesc.ActionDescriptor?.GetApiVersion();
+					// significaria que esta ação não é versionada e deve ser incluída em todos os lugares
+					if (actionApiVersionModel == null)
+					{
+						return true;
+					}
+					if (actionApiVersionModel.DeclaredApiVersions.Any())
+					{
+						return actionApiVersionModel.DeclaredApiVersions.Any(v => $"v{v.ToString()}" == docName);
+					}
+					return actionApiVersionModel.ImplementedApiVersions.Any(v => $"v{v.ToString()}" == docName);
+				});
+
+				cfg.OperationFilter<ApiVersionOperationFilter>();
+
 			});
 
 		}
@@ -68,7 +97,9 @@ namespace MimicAPI
 
 			app.UseSwagger(); // /swagger/v1/swagger.json
 			app.UseSwaggerUI(cfg => {
-				cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "MimicAPI");
+				cfg.SwaggerEndpoint("/swagger/v2.0/swagger.json", "MimicAPI - V 2.0");
+				cfg.SwaggerEndpoint("/swagger/v1.1/swagger.json", "MimicAPI - V 1.1");
+				cfg.SwaggerEndpoint("/swagger/v1.0/swagger.json", "MimicAPI - V 1.0");
 				cfg.RoutePrefix = String.Empty;
 			});
 		}

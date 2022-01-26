@@ -11,6 +11,7 @@ namespace MimicAPI.Versao1.Models
 		public int Id { get; set; }
 
 		[Required]
+		[MaxLength(150)]
 		public string Nome { get; set; }
 
 		[Required]

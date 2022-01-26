@@ -15,3 +15,4 @@ C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seç�
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.dll
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.pdb
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\obj\Debug\netcoreapp2.2\MimicAPI.genruntimeconfig.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 01\01_Fim\MimicAPI\MimicAPI\bin\Debug\netcoreapp2.2\MimicAPI.xml

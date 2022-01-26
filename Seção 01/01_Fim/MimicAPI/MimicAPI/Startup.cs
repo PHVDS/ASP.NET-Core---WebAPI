@@ -14,6 +14,8 @@ using AutoMapper;
 using MimicAPI.Helpers;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using MimicAPI.Helpers.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace MimicAPI
 {
@@ -62,6 +64,12 @@ namespace MimicAPI
 					Title = "MimicAPI = V1.0",
 					Version = "v1.0"
 				});
+				var CaminhoProjeto = PlatformServices.Default.Application.ApplicationBasePath;
+				//Para ativar o xml no Swagger MimicAPI > Propriedades > Compilar > Saida > Marcao checkbox do xml
+				var NomeProejto = $"{PlatformServices.Default.Application.ApplicationName}.xml";
+				var CaminhoArquivoXMLComentario = Path.Combine(CaminhoProjeto, NomeProejto);
+
+				cfg.IncludeXmlComments(CaminhoArquivoXMLComentario);
 
 				cfg.DocInclusionPredicate((docName, apiDesc) =>
 				{

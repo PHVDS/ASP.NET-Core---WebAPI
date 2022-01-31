@@ -27,9 +27,29 @@ namespace MinhasTarefasAPI.Repositories
 			return query.ToList<Tarefa>();
 		}
 
-		public void Sincronizacao(List<Tarefa> tarefas)
+		public List<Tarefa> Sincronizacao(List<Tarefa> tarefas)
 		{
-			throw new NotImplementedException();
+			var tarefasNovas = tarefas.Where(a => a.IdTarefaApi == 0);
+			//Cadastrar novos registros
+			if (tarefasNovas.Count() > 0)
+			{
+				foreach (var tarefa in tarefasNovas)
+				{
+					_banco.Tarefas.Add(tarefa);
+				}
+			}
+
+			var tarefasExcluidasAtualizadas = tarefas.Where(a => a.IdTarefaApi != 0);
+			//Atualizacao de regitro (Excluido)
+			if (tarefasExcluidasAtualizadas.Count() > 0)
+			{
+				foreach (var tarefa in tarefasExcluidasAtualizadas)
+				{
+					_banco.Tarefas.Update(tarefa);
+				}
+			}
+			_banco.SaveChanges();
+			return tarefasNovas.ToList();
 		}
 	}
 }

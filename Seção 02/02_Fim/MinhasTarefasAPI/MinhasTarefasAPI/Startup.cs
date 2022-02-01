@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MinhasTarefasAPI.Database;
+using MinhasTarefasAPI.Models;
 using MinhasTarefasAPI.Repositories;
 using MinhasTarefasAPI.Repositories.Contracts;
 using System;
@@ -39,6 +40,9 @@ namespace MinhasTarefasAPI
 			services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+			//Configurando Identity pra usar como serviço
+			services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<MinhasTarefasContext>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +57,8 @@ namespace MinhasTarefasAPI
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-
+			app.UseStatusCodePages();
+			app.UseAuthentication();
 			app.UseHttpsRedirection();
 			app.UseMvc();
 		}

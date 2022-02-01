@@ -30,6 +30,9 @@ namespace MinhasTarefasAPI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.Configure<ApiBehaviorOptions>(op => { 
+				op.SuppressModelStateInvalidFilter = true;
+			});
 
 			services.AddDbContext<MinhasTarefasContext>( op => {
 				op.UseSqlite("Data Source=Database\\MinasTarefas.db");

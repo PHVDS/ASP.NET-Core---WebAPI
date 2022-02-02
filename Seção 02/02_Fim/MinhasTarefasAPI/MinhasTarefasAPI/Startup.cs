@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -49,7 +50,15 @@ namespace MinhasTarefasAPI
 					);
 
 			//Configurando Identity pra usar como serviço
-			services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<MinhasTarefasContext>();
+			services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MinhasTarefasContext>();
+			
+			//Redirecionando usuario para tela de login (Erro 401 Usuario n autorizado)
+			services.ConfigureApplicationCookie(opt => {
+				opt.Events.OnRedirectToLogin = context => {
+					context.Response.StatusCode = 401;
+					return Task.CompletedTask;
+				};
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

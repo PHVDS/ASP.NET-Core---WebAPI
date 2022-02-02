@@ -39,7 +39,7 @@ namespace MinhasTarefasAPI.Controllers
 				if (usuario != null)
 				{
 					//Login no Identity
-					_signInManager.SignInAsync(usuario, false);
+					//_signInManager.SignInAsync(usuario, false);
 
 					//Retorna o Token (JWT)
 					return Ok(BuildToken(usuario));

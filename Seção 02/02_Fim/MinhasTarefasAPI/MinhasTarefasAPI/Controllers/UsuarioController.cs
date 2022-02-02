@@ -91,7 +91,8 @@ namespace MinhasTarefasAPI.Controllers
 		public object BuildToken(ApplicationUser usuario)
 		{
 			var claims = new[] {
-				new Claim(JwtRegisteredClaimNames.Email, usuario.Email)
+				new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
+				new Claim(JwtRegisteredClaimNames.Sub, usuario.Id)
 			};
 
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("chave-api-jwt-minhas-tarefas")); //recomendado ser feito no(appsettings.json)

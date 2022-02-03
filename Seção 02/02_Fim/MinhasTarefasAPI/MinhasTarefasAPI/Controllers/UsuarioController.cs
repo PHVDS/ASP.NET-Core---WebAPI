@@ -19,11 +19,13 @@ namespace MinhasTarefasAPI.Controllers
 	public class UsuarioController : ControllerBase
 	{
 		private readonly IUsuarioRepository _usuarioRepository;
+		private readonly ITokenRepository _tokenRepository;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly UserManager<ApplicationUser> _userManager;
-		public UsuarioController(IUsuarioRepository usuarioRepository, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+		public UsuarioController(IUsuarioRepository usuarioRepository, ITokenRepository tokenRepository, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
 		{
 			_usuarioRepository = usuarioRepository;
+			_tokenRepository = tokenRepository;
 			_signInManager = signInManager;
 			_userManager = userManager;
 		}
@@ -42,7 +44,21 @@ namespace MinhasTarefasAPI.Controllers
 					//_signInManager.SignInAsync(usuario, false);
 
 					//Retorna o Token (JWT)
-					return Ok(BuildToken(usuario));
+					var token = BuildToken(usuario);
+
+					//Salvar o token no banco
+					var tokenModel = new Token()
+					{
+						RefreshToken = token.RefreshToken,
+						ExpirationToken = token.Expiration,
+						ExpirationRefreshToken = token.ExpirationRefreshToken,
+						Usuario = usuario,
+						Criado = DateTime.Now,
+						Utilizado = false
+					};
+
+					_tokenRepository.Cadastrar(tokenModel);
+					return Ok(token);
 				}
 				else
 				{
@@ -88,7 +104,7 @@ namespace MinhasTarefasAPI.Controllers
 			}
 		}
 
-		public object BuildToken(ApplicationUser usuario)
+		public TokenDTO BuildToken(ApplicationUser usuario)
 		{
 			var claims = new[] {
 				new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
@@ -108,8 +124,10 @@ namespace MinhasTarefasAPI.Controllers
 			);
 
 			var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-			return new { token = tokenString, expiration = exp };
+			var refreshToken = Guid.NewGuid().ToString();
+			var expRefreshToken = DateTime.UtcNow.AddHours(2);
+			var tokenDTO = new TokenDTO { Token = tokenString, Expiration = exp, RefreshToken = refreshToken, ExpirationRefreshToken = expRefreshToken };
+			return tokenDTO;
 		}
 	}
 }

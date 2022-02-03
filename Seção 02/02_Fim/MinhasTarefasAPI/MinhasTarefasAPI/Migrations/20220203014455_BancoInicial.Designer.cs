@@ -9,8 +9,8 @@ using MinhasTarefasAPI.Database;
 namespace MinhasTarefasAPI.Migrations
 {
     [DbContext(typeof(MinhasTarefasContext))]
-    [Migration("20220127175755_TarefaSincronizacao")]
-    partial class TarefaSincronizacao
+    [Migration("20220203014455_BancoInicial")]
+    partial class BancoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,6 +211,32 @@ namespace MinhasTarefasAPI.Migrations
                     b.ToTable("Tarefas");
                 });
 
+            modelBuilder.Entity("MinhasTarefasAPI.Models.Token", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("Atualizado");
+
+                    b.Property<DateTime>("Criado");
+
+                    b.Property<DateTime>("ExpirationRefreshToken");
+
+                    b.Property<DateTime>("ExpirationToken");
+
+                    b.Property<string>("RefreshToken");
+
+                    b.Property<string>("UsuarioId");
+
+                    b.Property<bool>("Utilizado");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Tokens");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -260,6 +286,13 @@ namespace MinhasTarefasAPI.Migrations
                 {
                     b.HasOne("MinhasTarefasAPI.Models.ApplicationUser", "Usuario")
                         .WithMany("Tarefas")
+                        .HasForeignKey("UsuarioId");
+                });
+
+            modelBuilder.Entity("MinhasTarefasAPI.Models.Token", b =>
+                {
+                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser", "Usuario")
+                        .WithMany("Tokens")
                         .HasForeignKey("UsuarioId");
                 });
 #pragma warning restore 612, 618

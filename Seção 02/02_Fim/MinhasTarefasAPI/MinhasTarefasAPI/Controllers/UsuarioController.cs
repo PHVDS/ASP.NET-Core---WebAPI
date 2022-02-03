@@ -44,21 +44,7 @@ namespace MinhasTarefasAPI.Controllers
 					//_signInManager.SignInAsync(usuario, false);
 
 					//Retorna o Token (JWT)
-					var token = BuildToken(usuario);
-
-					//Salvar o token no banco
-					var tokenModel = new Token()
-					{
-						RefreshToken = token.RefreshToken,
-						ExpirationToken = token.Expiration,
-						ExpirationRefreshToken = token.ExpirationRefreshToken,
-						Usuario = usuario,
-						Criado = DateTime.Now,
-						Utilizado = false
-					};
-
-					_tokenRepository.Cadastrar(tokenModel);
-					return Ok(token);
+					return GerarToken(usuario);
 				}
 				else
 				{
@@ -69,6 +55,26 @@ namespace MinhasTarefasAPI.Controllers
 			{
 				return UnprocessableEntity(ModelState);
 			}
+		}
+
+		[HttpPost("renovar")]
+		public ActionResult Renovar([FromBody] TokenDTO tokenDTO) 
+		{
+			var refreshTokenDB = _tokenRepository.Obter(tokenDTO.RefreshToken);
+
+			if (refreshTokenDB == null)
+				return NotFound();
+
+			//RefreshToken antigo - Atualizar - Desativar esse refreshToken
+			refreshTokenDB.Atualizado = DateTime.Now;
+			refreshTokenDB.Utilizado = true;
+			_tokenRepository.Atualizar(refreshTokenDB);
+
+			//Gerar um novo Token/Refresh Token - Salvar.
+			var usuario = _usuarioRepository.Obter(refreshTokenDB.UsuarioId);
+
+			return GerarToken(usuario);
+
 		}
 
 		[HttpPost("")]
@@ -128,6 +134,25 @@ namespace MinhasTarefasAPI.Controllers
 			var expRefreshToken = DateTime.UtcNow.AddHours(2);
 			var tokenDTO = new TokenDTO { Token = tokenString, Expiration = exp, RefreshToken = refreshToken, ExpirationRefreshToken = expRefreshToken };
 			return tokenDTO;
+		}
+
+		private ActionResult GerarToken(ApplicationUser usuario)
+		{
+			var token = BuildToken(usuario);
+
+			//Salvar o token no banco
+			var tokenModel = new Token()
+			{
+				RefreshToken = token.RefreshToken,
+				ExpirationToken = token.Expiration,
+				ExpirationRefreshToken = token.ExpirationRefreshToken,
+				Usuario = usuario,
+				Criado = DateTime.Now,
+				Utilizado = false
+			};
+
+			_tokenRepository.Cadastrar(tokenModel);
+			return Ok(token);
 		}
 	}
 }

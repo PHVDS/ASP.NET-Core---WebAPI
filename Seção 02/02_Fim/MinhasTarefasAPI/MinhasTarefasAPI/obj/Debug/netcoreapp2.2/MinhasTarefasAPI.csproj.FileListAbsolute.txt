@@ -15,3 +15,4 @@ C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seç�
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 02\02_Fim\MinhasTarefasAPI\MinhasTarefasAPI\obj\Debug\netcoreapp2.2\MinhasTarefasAPI.dll
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 02\02_Fim\MinhasTarefasAPI\MinhasTarefasAPI\obj\Debug\netcoreapp2.2\MinhasTarefasAPI.pdb
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 02\02_Fim\MinhasTarefasAPI\MinhasTarefasAPI\obj\Debug\netcoreapp2.2\MinhasTarefasAPI.genruntimeconfig.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 02\02_Fim\MinhasTarefasAPI\MinhasTarefasAPI\bin\Debug\netcoreapp2.2\MinhasTarefasAPI.xml

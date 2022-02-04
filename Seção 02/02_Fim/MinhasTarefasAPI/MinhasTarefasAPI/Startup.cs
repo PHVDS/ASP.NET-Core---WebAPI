@@ -18,6 +18,7 @@ using MinhasTarefasAPI.V1.Helpers.Swagger;
 using MinhasTarefasAPI.V1.Models;
 using MinhasTarefasAPI.V1.Repositories;
 using MinhasTarefasAPI.V1.Repositories.Contracts;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -73,6 +74,18 @@ namespace MinhasTarefasAPI
 			});
 
 			services.AddSwaggerGen(cfg => {
+				cfg.AddSecurityDefinition("Bearer", new ApiKeyScheme(){
+					In = "header",
+					Type = "apiKey",
+					Description = "Add o JSON Web Token(JWT) para autenticar.",
+					Name = "Authorization"
+				});
+
+				var security = new Dictionary<string, IEnumerable<string>>(){
+					{ "Bearer", new string[] { } }
+				};
+				cfg.AddSecurityRequirement(security);
+
 				cfg.ResolveConflictingActions(apiDescription => apiDescription.First());				
 				cfg.SwaggerDoc("v1.0", new Swashbuckle.AspNetCore.Swagger.Info()
 				{
@@ -155,11 +168,16 @@ namespace MinhasTarefasAPI
 				app.UseHsts();
 			}
 
-			app.UseAuthentication();
 			app.UseStatusCodePages();
 			app.UseAuthentication();
 			app.UseHttpsRedirection();
 			app.UseMvc();
+
+			app.UseSwagger(); // /swagger/v1/swagger.json
+			app.UseSwaggerUI(cfg => {
+				cfg.SwaggerEndpoint("/swagger/v1.0/swagger.json", "MinhasTarefasAPI - V 1.0");
+				cfg.RoutePrefix = String.Empty;
+			});
 		}
 	}
 }

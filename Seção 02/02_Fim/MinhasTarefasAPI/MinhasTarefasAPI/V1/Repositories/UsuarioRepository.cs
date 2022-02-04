@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MinhasTarefasAPI.Models;
+using MinhasTarefasAPI.V1.Models;
 using MinhasTarefasAPI.V1.Repositories.Contracts;
 using System;
 using System.Collections.Generic;

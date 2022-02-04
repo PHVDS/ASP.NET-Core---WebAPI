@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using MinhasTarefasAPI.Models;
+using MinhasTarefasAPI.V1.Models;
 using MinhasTarefasAPI.V1.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace MinhasTarefasAPI.V1.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[ApiVersion("1.0")]
 	public class UsuarioController : ControllerBase
 	{
 		private readonly IUsuarioRepository _usuarioRepository;
@@ -110,7 +111,7 @@ namespace MinhasTarefasAPI.V1.Controllers
 			}
 		}
 
-		public TokenDTO BuildToken(ApplicationUser usuario)
+		private TokenDTO BuildToken(ApplicationUser usuario)
 		{
 			var claims = new[] {
 				new Claim(JwtRegisteredClaimNames.Email, usuario.Email),

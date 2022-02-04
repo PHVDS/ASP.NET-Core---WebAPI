@@ -5,18 +5,22 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using MinhasTarefasAPI.Database;
-using MinhasTarefasAPI.Models;
-using MinhasTarefasAPI.Repositories;
-using MinhasTarefasAPI.Repositories.Contracts;
+using MinhasTarefasAPI.V1.Helpers.Swagger;
+using MinhasTarefasAPI.V1.Models;
+using MinhasTarefasAPI.V1.Repositories;
+using MinhasTarefasAPI.V1.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,11 +52,58 @@ namespace MinhasTarefasAPI
 			services.AddScoped<ITarefaRepository, TarefaRepository>();
 			services.AddScoped<ITokenRepository, TokenRepository>();
 
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+			services.AddMvc(config => {
+				//Formatação para enviar e receber XML
+				config.ReturnHttpNotAcceptable = true;
+				config.InputFormatters.Add(new XmlSerializerInputFormatter(config));
+				config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+			})
+			.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 				//Ignore reference looping handling	
-				.AddJsonOptions(opt => 
-						opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-					);
+			.AddJsonOptions(opt => 
+					opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+			);
+
+			//Versionamneto e Swagger
+			services.AddApiVersioning(cfg => {
+				cfg.ReportApiVersions = true;
+				//cfg.ApiVersionReader = new HeaderApiVersionReader("api-version");
+				cfg.AssumeDefaultVersionWhenUnspecified = true;
+				cfg.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+			});
+
+			services.AddSwaggerGen(cfg => {
+				cfg.ResolveConflictingActions(apiDescription => apiDescription.First());				
+				cfg.SwaggerDoc("v1.0", new Swashbuckle.AspNetCore.Swagger.Info()
+				{
+					Title = "MinhasTarefas API = V1.0",
+					Version = "v1.0"
+				});
+				var CaminhoProjeto = PlatformServices.Default.Application.ApplicationBasePath;
+				//Para ativar o xml no Swagger MinhasTarefas > Propriedades > Compilar > Saida > Marcao checkbox do xml
+				var NomeProejto = $"{PlatformServices.Default.Application.ApplicationName}.xml";
+				var CaminhoArquivoXMLComentario = Path.Combine(CaminhoProjeto, NomeProejto);
+
+				cfg.IncludeXmlComments(CaminhoArquivoXMLComentario);
+
+				cfg.DocInclusionPredicate((docName, apiDesc) =>
+				{
+					var actionApiVersionModel = apiDesc.ActionDescriptor?.GetApiVersion();
+					// significaria que esta ação não é versionada e deve ser incluída em todos os lugares
+					if (actionApiVersionModel == null)
+					{
+						return true;
+					}
+					if (actionApiVersionModel.DeclaredApiVersions.Any())
+					{
+						return actionApiVersionModel.DeclaredApiVersions.Any(v => $"v{v.ToString()}" == docName);
+					}
+					return actionApiVersionModel.ImplementedApiVersions.Any(v => $"v{v.ToString()}" == docName);
+				});
+
+				cfg.OperationFilter<ApiVersionOperationFilter>();
+
+			});
 
 			//Configurando Identity pra usar como serviço
 			services.AddIdentity<ApplicationUser, IdentityRole>()

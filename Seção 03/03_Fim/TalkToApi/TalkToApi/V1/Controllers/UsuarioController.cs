@@ -9,6 +9,7 @@ using System.Security.Claims;
 using TalkToApi.V1.Repositories.Contracts;
 using System.IdentityModel.Tokens.Jwt;
 using TalkToApi.V1.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TalkToApi.V1.Controllers
 {
@@ -109,6 +110,7 @@ namespace TalkToApi.V1.Controllers
 			}
 		}
 
+		[Authorize]
 		[HttpPut("{id}")]
 		public ActionResult Atualizar(string id, [FromBody] UsuarioDTO usuarioDTO)
 		{

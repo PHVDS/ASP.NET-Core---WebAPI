@@ -1,0 +1,16 @@
+Passo a Passo TalkToAPI
+
+Criação do projeto.
+
+1 Criou a Pasta V1, e colou a pasta Controllers na V1 e Criou a Models na mesma.
+2 Criou a classe Mensagem na Models e seus atributos.
+3 Criou a classe ApplicationUser e seus atributos, dps extendeu de IdentityUser
+4 Criou a Pasta Database na raiz do projeto e a classe Context no Database
+5 Extendeu IdentityDbcontext na class TalkToApi.
+6 Configurar o banco de dados na class Startup, baixar o Microsoft.EntityFrameWorkCore.Sqlite e o Tools no Nuget.
+7 Fazer o Mapeamento das classes para criar o banco.
+8 Rodar o Add-Migration depois o Update-DataBase no Console para criar o banco de dados.
+9 Criar o controller UsuarioController e instalar o Versioning.Api no NuGet.
+10 Criar a pasta Repositories e  a sub pasta Contracts na pasta V1.
+11 Criar as classes UsuarioRepository e TokenRepository em Repositories e ITokenRepository e IUsuarioRepository em Contracts.
+12 Criar as class Token, Usuario e TokenDTO e UsuarioDTO em Models.

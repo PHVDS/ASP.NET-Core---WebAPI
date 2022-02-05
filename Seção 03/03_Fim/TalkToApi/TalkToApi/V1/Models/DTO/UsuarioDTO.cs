@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TalkToApi.V1.Models
+namespace TalkToApi.V1.Models.DTO
 {
 	public class UsuarioDTO
 	{

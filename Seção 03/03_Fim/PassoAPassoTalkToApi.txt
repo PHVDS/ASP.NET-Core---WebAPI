@@ -14,3 +14,6 @@ Criação do projeto.
 10 Criar a pasta Repositories e  a sub pasta Contracts na pasta V1.
 11 Criar as classes UsuarioRepository e TokenRepository em Repositories e ITokenRepository e IUsuarioRepository em Contracts.
 12 Criar as class Token, Usuario e TokenDTO e UsuarioDTO em Models.
+13 Configurar Startup para Versionamento e Swagger.
+14 Configurar arquivo xml de comentario
+15

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TalkToApi.Database;
+using TalkToApi.Helpers;
 using TalkToApi.V1.Helpers.Swagger;
 using TalkToApi.V1.Models;
 using TalkToApi.V1.Repositories;
@@ -40,6 +42,16 @@ namespace TalkToApi
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			#region AutoMapper-Config
+			var config = new MapperConfiguration(cfg =>
+			{
+				cfg.AddProfile(new DTOMapperProfile());
+			});
+			IMapper mapper = config.CreateMapper();
+			services.AddSingleton(mapper);
+			#endregion
+
+
 			/* Repositories */
 			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 			services.AddScoped<ITokenRepository, TokenRepository>();
@@ -51,14 +63,14 @@ namespace TalkToApi
 			services.AddDbContext<TalkToApiContext>(cfg => {
 				cfg.UseSqlite("Data Source=Database\\TalkTo.db");
 			});
-			services.AddMvc(config => {
+			services.AddMvc(cfg => {
 				//Formatação para enviar e receber XML
-				config.ReturnHttpNotAcceptable = true;
-				config.InputFormatters.Add(new XmlSerializerInputFormatter(config));
-				config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+				cfg.ReturnHttpNotAcceptable = true;
+				cfg.InputFormatters.Add(new XmlSerializerInputFormatter(cfg));
+				cfg.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 			})
 				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-			//Ignore reference looping handling	
+				 //Ignore reference looping handling	
 				.AddJsonOptions(opt =>
 					opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 			);

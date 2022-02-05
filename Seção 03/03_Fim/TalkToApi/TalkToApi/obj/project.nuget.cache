@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "co48ed7m388UgpO0xdjTbsBdhWEvsSdQ07+jSovwFHolwzmzE0vMsaIBse45hoXIbKGyS/fIM1n8imFoySiwDA==",
+  "dgSpecHash": "sHoxpqXyeS/iGyjJD5b6LyOtQCMNpYN8lulgJtTYofnRivqoWF3Ru1uoZ7tGPFCApks79HVAS7z7BWdWqAI2EQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToApi\\TalkToApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PAULO HENRIQUE\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\PAULO HENRIQUE\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

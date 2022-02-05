@@ -109,6 +109,47 @@ namespace TalkToApi.V1.Controllers
 			}
 		}
 
+		[HttpPut("{id}")]
+		public ActionResult Atualizar(string id, [FromBody] UsuarioDTO usuarioDTO)
+		{
+
+			if (_userManager.GetUserAsync(HttpContext.User).Result.Id != id) 
+				return Forbid();
+
+			if (ModelState.IsValid)
+			{
+				ApplicationUser usuario = new ApplicationUser();
+				usuario.FullName = usuarioDTO.Nome;
+				usuario.UserName = usuarioDTO.Email;
+				usuario.Email = usuarioDTO.Email;
+				usuario.Slogan = usuarioDTO.Slogan;
+
+				var resultado = _userManager.UpdateAsync(usuario).Result;
+				_userManager.RemovePasswordAsync(usuario);
+				_userManager.AddPasswordAsync(usuario, usuarioDTO.Senha);
+
+				//Tratando erros
+				if (!resultado.Succeeded)
+				{
+					List<string> erros = new List<string>();
+					foreach (var erro in resultado.Errors)
+					{
+						erros.Add(erro.Description);
+					}
+					return UnprocessableEntity(erros);
+				}
+				else
+				{
+					return Ok(usuario);
+				}
+
+			}
+			else
+			{
+				return UnprocessableEntity(ModelState);
+			}
+		}
+
 		private TokenDTO BuildToken(ApplicationUser usuario)
 		{
 			var claims = new[] {

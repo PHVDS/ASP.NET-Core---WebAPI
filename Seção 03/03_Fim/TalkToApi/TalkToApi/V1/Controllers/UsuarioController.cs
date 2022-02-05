@@ -114,13 +114,12 @@ namespace TalkToApi.V1.Controllers
 		[HttpPut("{id}")]
 		public ActionResult Atualizar(string id, [FromBody] UsuarioDTO usuarioDTO)
 		{
-
-			if (_userManager.GetUserAsync(HttpContext.User).Result.Id != id) 
+			ApplicationUser usuario = _userManager.GetUserAsync(HttpContext.User).Result;
+			if (usuario.Id != id) 
 				return Forbid();
 
 			if (ModelState.IsValid)
 			{
-				ApplicationUser usuario = new ApplicationUser();
 				usuario.FullName = usuarioDTO.Nome;
 				usuario.UserName = usuarioDTO.Email;
 				usuario.Email = usuarioDTO.Email;

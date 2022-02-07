@@ -30,6 +30,7 @@ namespace TalkToApi.V1.Controllers
 			_userManager = userManager;
 		}
 
+		[Authorize]
 		[HttpGet("")]
 		public ActionResult ObterTodos()
 		{

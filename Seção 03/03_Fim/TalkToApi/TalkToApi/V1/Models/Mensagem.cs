@@ -14,12 +14,17 @@ namespace TalkToApi.V1.Models
 
 		[ForeignKey("DeId")]
 		public ApplicationUser De { get; set; }
+		
+		[Required]
 		public string DeId { get; set; }
 
 		public ApplicationUser Para { get; set; }
 		[ForeignKey("ParaId")]
+		
+		[Required]
 		public string ParaId { get; set; }
 		
+		[Required]
 		public string Texto { get; set; }
 		public DateTime Criado { get; set; }
 	}

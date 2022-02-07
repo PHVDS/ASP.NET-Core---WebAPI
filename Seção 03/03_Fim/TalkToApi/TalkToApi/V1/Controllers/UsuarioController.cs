@@ -30,6 +30,22 @@ namespace TalkToApi.V1.Controllers
 			_userManager = userManager;
 		}
 
+		[HttpGet("")]
+		public ActionResult ObterTodos()
+		{
+			return Ok(_userManager.Users);
+		}
+
+		[HttpGet("{id}")]
+		public ActionResult ObterUsuario(string id)
+		{
+			var usuario = _userManager.FindByIdAsync(id).Result;
+			if (usuario == null)
+				return NotFound();
+
+			return Ok(usuario);
+		}
+
 		[HttpPost("login")]
 		public ActionResult Login([FromBody] UsuarioDTO usuarioDTO)
 		{

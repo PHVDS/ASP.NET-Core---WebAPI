@@ -10,6 +10,8 @@ using TalkToApi.V1.Repositories.Contracts;
 using System.IdentityModel.Tokens.Jwt;
 using TalkToApi.V1.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using System.Linq;
 
 namespace TalkToApi.V1.Controllers
 {
@@ -18,12 +20,14 @@ namespace TalkToApi.V1.Controllers
 	[ApiVersion("1.0")]
 	public class UsuarioController : ControllerBase
 	{
+		private readonly IMapper _mapper;
 		private readonly IUsuarioRepository _usuarioRepository;
 		private readonly ITokenRepository _tokenRepository;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly UserManager<ApplicationUser> _userManager;
-		public UsuarioController(IUsuarioRepository usuarioRepository, ITokenRepository tokenRepository, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+		public UsuarioController(IMapper mapper, IUsuarioRepository usuarioRepository, ITokenRepository tokenRepository, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
 		{
+			_mapper = mapper;
 			_usuarioRepository = usuarioRepository;
 			_tokenRepository = tokenRepository;
 			_signInManager = signInManager;
@@ -34,10 +38,19 @@ namespace TalkToApi.V1.Controllers
 		[HttpGet("")]
 		public ActionResult ObterTodos()
 		{
-			return Ok(_userManager.Users);
+			var usuariosAppUser = _userManager.Users.ToList();
+
+			var listaUsuarioDTO = _mapper.Map<List<ApplicationUser>, List<UsuarioDTO>>(usuariosAppUser);
+
+			foreach (var usuarioDTO in listaUsuarioDTO)
+			{
+				usuarioDTO.Links.Add(new LinkDTO("_self", Url.Link("ObterUsuario", 
+									 new { id = usuarioDTO.Id }), "GET"));
+			}
+			return Ok(listaUsuarioDTO);
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("{id}", Name = "ObterUsuario")]
 		public ActionResult ObterUsuario(string id)
 		{
 			var usuario = _userManager.FindByIdAsync(id).Result;

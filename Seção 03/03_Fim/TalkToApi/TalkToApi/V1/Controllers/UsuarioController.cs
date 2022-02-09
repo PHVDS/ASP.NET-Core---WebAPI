@@ -35,7 +35,7 @@ namespace TalkToApi.V1.Controllers
 		}
 
 		[Authorize]
-		[HttpGet("")]
+		[HttpGet("", Name ="ObterTodos")]
 		public ActionResult ObterTodos()
 		{
 			var usuariosAppUser = _userManager.Users.ToList();
@@ -46,7 +46,10 @@ namespace TalkToApi.V1.Controllers
 			{
 				usuarioDTO.Links.Add(new LinkDTO("_self", Url.Link("ObterUsuario", new { id = usuarioDTO.Id }), "GET"));
 			}
-			return Ok(listaUsuarioDTO);
+
+			var lista = new ListaDTO<UsuarioDTO>() { Listas = listaUsuarioDTO };
+			lista.Links.Add(new LinkDTO("_self", Url.Link("ObterTodos", null), "GET"));
+			return Ok(lista);
 		}
 
 		[HttpGet("{id}", Name = "ObterUsuario")]

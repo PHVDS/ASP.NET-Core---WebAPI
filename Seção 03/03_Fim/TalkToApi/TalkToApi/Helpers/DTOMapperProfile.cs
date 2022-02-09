@@ -11,11 +11,6 @@ namespace TalkToApi.Helpers
 		{
 			CreateMap<ApplicationUser, UsuarioDTO>()
 				.ForMember(destino => destino.Nome, origem => origem.MapFrom(src => src.FullName));
-
-			//convertendo uma lista de ApplionUser em uma List de UsuarioDTO
-			CreateMap<List<ApplicationUser>, List<UsuarioDTO>>();
-			
-			//CreateMap<PaginationList<Palavra>, PaginationList<PalavraDTO>>();
 		}
 	}
 }

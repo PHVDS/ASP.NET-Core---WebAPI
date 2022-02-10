@@ -23,6 +23,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TalkToApi.Database;
 using TalkToApi.Helpers;
+using TalkToApi.Helpers.Constants;
 using TalkToApi.V1.Helpers.Swagger;
 using TalkToApi.V1.Models;
 using TalkToApi.V1.Repositories;
@@ -74,7 +75,7 @@ namespace TalkToApi
 
 				if (jsonOutputFormatter != null)
 				{
-					jsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.talkto.hateoas+json");
+					jsonOutputFormatter.SupportedMediaTypes.Add(CustomMediaType.Hateoas);
 				}
 
 			})

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TalkToApi.Helpers.Constants;
 using TalkToApi.V1.Models;
 using TalkToApi.V1.Models.DTO;
 using TalkToApi.V1.Repositories.Contracts;
@@ -37,7 +38,7 @@ namespace TalkToApi.V1.Controllers
 
 			var mensagens = _mensagemRepository.ObterMensagem(usuarioUmId, usuarioDoisId);
 			//Content Negociation + Hyper Links
-			if (mediaType == "application/vnd.talkto.hateoas+json")
+			if (mediaType == CustomMediaType.Hateoas)
 			{
 				var listaMsg = _mapper.Map<List<Mensagem>, List<MensagemDTO>>(mensagens);
 
@@ -54,7 +55,7 @@ namespace TalkToApi.V1.Controllers
 
 		[Authorize]
 		[HttpPost("", Name ="MensagemCadastrar")]
-		public ActionResult Cadastrar([FromBody] Mensagem mensagem)
+		public ActionResult Cadastrar([FromBody] Mensagem mensagem, [FromHeader(Name = "Accept")] string mediaType)
 		{
 			if (ModelState.IsValid)
 			{
@@ -62,11 +63,18 @@ namespace TalkToApi.V1.Controllers
 				{
 					_mensagemRepository.Cadastrar(mensagem);
 
-					var mensagemDTO = _mapper.Map<Mensagem, MensagemDTO>(mensagem);
-					mensagemDTO.Links.Add(new LinkDTO("_self", Url.Link("MensagemCadastrar", null), "POST"));
-					mensagemDTO.Links.Add(new LinkDTO("_atualizacaoParcial", Url.Link("MensagemAtualizacaoParcial", new { id = mensagem.Id }), "PATCH"));
+					if (mediaType == CustomMediaType.Hateoas)
+					{
+						var mensagemDTO = _mapper.Map<Mensagem, MensagemDTO>(mensagem);
+						mensagemDTO.Links.Add(new LinkDTO("_self", Url.Link("MensagemCadastrar", null), "POST"));
+						mensagemDTO.Links.Add(new LinkDTO("_atualizacaoParcial", Url.Link("MensagemAtualizacaoParcial", new { id = mensagem.Id }), "PATCH"));
 
-					return Ok(mensagemDTO);
+						return Ok(mensagemDTO);
+					}
+					else
+					{
+						return Ok(mensagem);
+					}
 				}
 				catch (Exception e)
 				{
@@ -82,7 +90,7 @@ namespace TalkToApi.V1.Controllers
 
 		[Authorize]
 		[HttpPatch("{id}", Name = "MensagemAtualizacaoParcial")]
-		public ActionResult AtualizacaoParcial(int id, [FromBody]JsonPatchDocument<Mensagem> jsonPatch)
+		public ActionResult AtualizacaoParcial(int id, [FromBody]JsonPatchDocument<Mensagem> jsonPatch, [FromHeader(Name = "Accept")] string mediaType)
 		{
 			if (jsonPatch == null)
 				return BadRequest();
@@ -94,10 +102,18 @@ namespace TalkToApi.V1.Controllers
 
 			_mensagemRepository.Atualizar(mensagem);
 
-			var mensagemDTO = _mapper.Map<Mensagem, MensagemDTO>(mensagem);
-			mensagemDTO.Links.Add(new LinkDTO("_self", Url.Link("MensagemAtualizacaoParcial", new { id = mensagem.Id }), "PATCH"));
+			if (mediaType == CustomMediaType.Hateoas)
+			{
+				var mensagemDTO = _mapper.Map<Mensagem, MensagemDTO>(mensagem);
+				mensagemDTO.Links.Add(new LinkDTO("_self", Url.Link("MensagemAtualizacaoParcial", new { id = mensagem.Id }), "PATCH"));
+
+				return Ok(mensagemDTO);
+			}
+			else
+			{
+				return Ok(mensagem);
+			}
 			
-			return Ok(mensagemDTO);
 		}
 	}
 }

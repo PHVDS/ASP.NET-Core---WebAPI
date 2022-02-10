@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TalkToApi.V1.Models.DTO
 {
-	public class MensagemDTO
+	public class MensagemDTO : BaseDTO
 	{
 		public int Id { get; set; }
 		public ApplicationUser De { get; set; }

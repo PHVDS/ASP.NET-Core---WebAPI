@@ -12,6 +12,9 @@ namespace TalkToApi.Helpers
 			CreateMap<ApplicationUser, UsuarioDTO>()
 				.ForMember(destino => destino.Nome, origem => origem.MapFrom(src => src.FullName));
 
+			CreateMap<ApplicationUser, UsuarioDTOSemHyperLink>()
+				.ForMember(destino => destino.Nome, origem => origem.MapFrom(src => src.FullName));
+			
 			CreateMap<Mensagem, MensagemDTO>();
 		}
 	}

@@ -52,11 +52,12 @@ namespace TalkToApi
 			services.AddSingleton(mapper);
 			#endregion
 
-
+			#region Repositories
 			/* Repositories */
 			services.AddScoped<IMensagemRepository, MensagemRespository>();
 			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 			services.AddScoped<ITokenRepository, TokenRepository>();
+			#endregion
 
 			services.Configure<ApiBehaviorOptions>(op => {
 				op.SuppressModelStateInvalidFilter = true;
@@ -65,6 +66,17 @@ namespace TalkToApi
 			services.AddDbContext<TalkToApiContext>(cfg => {
 				cfg.UseSqlite("Data Source=Database\\TalkTo.db");
 			});
+
+			//Habilitando o CORS
+			services.AddCors(cfg => {
+				cfg.AddDefaultPolicy(policy => {
+					policy
+						.WithOrigins("https://localhost:44339", "http://localhost:44339")
+						.WithMethods("GET")
+						.WithHeaders("Accept", "Authorization");
+				});
+			});
+
 			services.AddMvc(cfg => {
 				//Formatação para enviar e receber XML
 				cfg.ReturnHttpNotAcceptable = true;
@@ -192,6 +204,7 @@ namespace TalkToApi
 			app.UseStatusCodePages();
 			app.UseAuthentication();
 			app.UseHttpsRedirection();
+			app.UseCors();
 			app.UseMvc();
 
 			app.UseSwagger(); // /swagger/v1/swagger.json

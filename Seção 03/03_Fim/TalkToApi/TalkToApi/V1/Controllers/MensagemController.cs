@@ -28,19 +28,28 @@ namespace TalkToApi.V1.Controllers
 
 		[Authorize]
 		[HttpGet("{usuarioUmId}/{usuarioDoisId}", Name ="MensagemObter")]
-		public ActionResult Obter(string usuarioUmId, string usuarioDoisId)
+		public ActionResult Obter(string usuarioUmId, string usuarioDoisId, [FromHeader(Name = "Accept")]string mediaType)
 		{
 			if (usuarioUmId == usuarioDoisId)
 			{
 				return UnprocessableEntity();
 			}
-			var mensagens = _mensagemRepository.ObterMensagem(usuarioUmId, usuarioDoisId);
-			var listaMsg = _mapper.Map<List<Mensagem>, List<MensagemDTO>>(mensagens);
 
-			var lista = new ListaDTO<MensagemDTO>() { Lista = listaMsg };
-			lista.Links.Add(new LinkDTO("_self", Url.Link("MensagemObter", new { usuarioUmId = usuarioUmId, usuarioDoisId = usuarioDoisId }), "GET"));
-			
-			return Ok(lista);
+			var mensagens = _mensagemRepository.ObterMensagem(usuarioUmId, usuarioDoisId);
+			//Content Negociation + Hyper Links
+			if (mediaType == "application/vnd.talkto.hateoas+json")
+			{
+				var listaMsg = _mapper.Map<List<Mensagem>, List<MensagemDTO>>(mensagens);
+
+				var lista = new ListaDTO<MensagemDTO>() { Lista = listaMsg };
+				lista.Links.Add(new LinkDTO("_self", Url.Link("MensagemObter", new { usuarioUmId = usuarioUmId, usuarioDoisId = usuarioDoisId }), "GET"));
+
+				return Ok(lista);
+			}
+			else
+			{
+				return Ok(mensagens);
+			}
 		}
 
 		[Authorize]

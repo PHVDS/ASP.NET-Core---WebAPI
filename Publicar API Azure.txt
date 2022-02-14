@@ -1,0 +1,3 @@
+1- No XML(Se caso tiver configurado o swagger) do projeto clica com o botao direito > propriedades > copiar para diretorio de saida > sempre copiar
+2- No arquivo de banco de dados para a mesma coisa que a 1a opcao.
+3- Clica com o botao direito no arquivo geral do projeto(MimicAPI), Publicar > Azure > Serviços de App > Instancia de servico.

@@ -92,10 +92,8 @@ namespace TalkToApi.V1.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				ApplicationUser usuario = new ApplicationUser();
-				usuario.FullName = usuarioDTO.Nome;
-				usuario.UserName = usuarioDTO.Email;
-				usuario.Email = usuarioDTO.Email;
+				ApplicationUser usuario = _mapper.Map<UsuarioDTO, ApplicationUser>(usuarioDTO);
+		
 				var resultado = _userManager.CreateAsync(usuario, usuarioDTO.Senha).Result;
 
 				//Tratando erros

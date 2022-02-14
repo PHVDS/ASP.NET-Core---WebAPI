@@ -161,7 +161,14 @@ namespace TalkToApi
 			});
 
 			//Configurando Identity pra usar como serviço
-			services.AddIdentity<ApplicationUser, IdentityRole>()
+			services.AddIdentity<ApplicationUser, IdentityRole>(opt => {
+				opt.Password.RequireDigit = false;
+				opt.Password.RequiredLength = 5;
+				opt.Password.RequireLowercase = false;
+				opt.Password.RequireUppercase = false;
+				opt.Password.RequireNonAlphanumeric = false;
+
+			})
 				.AddEntityFrameworkStores<TalkToApiContext>()
 				.AddDefaultTokenProviders();
 

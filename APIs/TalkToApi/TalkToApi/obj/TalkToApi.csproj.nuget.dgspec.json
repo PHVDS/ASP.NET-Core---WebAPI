@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToApi\\TalkToApi.csproj": {}
+    "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToApi\\TalkToApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToApi\\TalkToApi.csproj": {
+    "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToApi\\TalkToApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToApi\\TalkToApi.csproj",
+        "projectUniqueName": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToApi\\TalkToApi.csproj",
         "projectName": "TalkToApi",
-        "projectPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToApi\\TalkToApi.csproj",
+        "projectPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToApi\\TalkToApi.csproj",
         "packagesPath": "C:\\Users\\PAULO HENRIQUE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToApi\\obj\\",
+        "outputPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

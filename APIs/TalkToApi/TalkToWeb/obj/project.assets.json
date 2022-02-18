@@ -12255,11 +12255,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToWeb\\TalkToWeb.csproj",
+      "projectUniqueName": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToWeb\\TalkToWeb.csproj",
       "projectName": "TalkToWeb",
-      "projectPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToWeb\\TalkToWeb.csproj",
+      "projectPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToWeb\\TalkToWeb.csproj",
       "packagesPath": "C:\\Users\\PAULO HENRIQUE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToWeb\\obj\\",
+      "outputPath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

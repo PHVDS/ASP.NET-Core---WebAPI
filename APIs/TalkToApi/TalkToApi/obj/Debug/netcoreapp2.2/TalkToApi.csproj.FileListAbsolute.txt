@@ -16,3 +16,21 @@ C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seç�
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 03\03_Fim\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.pdb
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 03\03_Fim\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.genruntimeconfig.cache
 C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\Seção 03\03_Fim\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.xml
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.deps.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.runtimeconfig.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.runtimeconfig.dev.json
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.dll
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.pdb
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\bin\Debug\netcoreapp2.2\TalkToApi.xml
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.csprojAssemblyReference.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.AssemblyInfoInputs.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.AssemblyInfo.cs
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.csproj.CoreCompileInputs.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.RazorAssemblyInfo.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.RazorAssemblyInfo.cs
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.RazorTargetAssemblyInfo.cache
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.dll
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.pdb
+C:\Users\PAULO HENRIQUE\Documents\Visual Studio 2019\ASP.NET Core - WebAPI\APIs\TalkToApi\TalkToApi\obj\Debug\netcoreapp2.2\TalkToApi.genruntimeconfig.cache

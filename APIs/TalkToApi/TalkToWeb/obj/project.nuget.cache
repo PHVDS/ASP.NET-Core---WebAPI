@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MLI7pEAMr1YlMKNwgzPLo0WcZZ0FLNxp5PxgMgx/PDWB7QoM6gC0Vaa2Lh/VxLmtxvUCthMp8piipVNSTEuDlw==",
+  "dgSpecHash": "87pEnWRH9rhmrBJTfqkrrAym6k+pHHmi88NQHNm/o0pmDn1x+vrXZ9lrGxHwIMGexuUTTg56mJmn82kK9aAQPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\Seção 03\\03_Fim\\TalkToApi\\TalkToWeb\\TalkToWeb.csproj",
+  "projectFilePath": "C:\\Users\\PAULO HENRIQUE\\Documents\\Visual Studio 2019\\ASP.NET Core - WebAPI\\APIs\\TalkToApi\\TalkToWeb\\TalkToWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PAULO HENRIQUE\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
